@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+ENV_TYPE = os.getenv('ENV_TYPE')
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -71,6 +71,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+if ENV_TYPE == 'local':
+    h = '127.0.0.1'
+else:
+    h = os.getenv('POSTGRES_HOST')
 
 DATABASES = {
     'default': {
@@ -78,8 +82,9 @@ DATABASES = {
         'NAME': os.getenv('POSTGRES_DB'),
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        # 'HOST': os.getenv('POSTGRES_HOST'),
         'PORT': os.getenv('POSTGRES_PORT'),
+        'HOST': h,
+
     }
 }
 # Password validation
@@ -121,7 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-ENV_TYPE = os.getenv('ENV_TYPE')
 
 if ENV_TYPE == 'local':
     STATIC_URL = 'static/'
