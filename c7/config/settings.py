@@ -120,7 +120,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+STATIC_URL = 'static/'
 ENV_TYPE = os.getenv('ENV_TYPE')
+
 if ENV_TYPE == 'local':
     STATIC_URL = 'static/'
     STATICFILES_DIRS = (
@@ -128,6 +130,7 @@ if ENV_TYPE == 'local':
     )
 else:
     STATIC_ROOT = BASE_DIR / 'statis'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
