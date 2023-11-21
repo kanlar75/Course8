@@ -48,7 +48,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: bash -c "python manage.py migrate && python manage.py create_users && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+#    command: bash -c "python manage.py migrate && python manage.py create_users && python manage.py runserver 0.0.0.0:8000"
 
   celery:
     build: .

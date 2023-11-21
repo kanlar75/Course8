@@ -71,6 +71,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
 if ENV_TYPE == 'local':
     host = '127.0.0.1'
 else:
