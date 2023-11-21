@@ -129,7 +129,7 @@ if ENV_TYPE == 'local':
         BASE_DIR / 'static/',
     )
 else:
-    STATIC_ROOT = BASE_DIR / 'statis'
+    STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
