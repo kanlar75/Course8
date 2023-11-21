@@ -1,0 +1,20 @@
+Name                    Stmts   Miss  Cover
+-------------------------------------------
+config\asgi.py              4      4     0%
+config\celery.py            7      0   100%
+config\settings.py         38      0   100%
+config\urls.py              7      0   100%
+config\wsgi.py              4      4     0%
+habits\admin.py             7      0   100%
+habits\apps.py              4      0   100%
+habits\models.py           21      1    95%
+habits\paginators.py        5      0   100%
+habits\permissions.py       7      1    86%
+users\models.py            22      1    95%
+users\permissions.py        7      7     0%
+users\serializers.py        6      0   100%
+users\tests.py             32      0   100%
+users\urls.py               6      0   100%
+users\views.py             17      0   100%
+-------------------------------------------
+TOTAL                     416     64    85%
