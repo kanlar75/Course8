@@ -75,10 +75,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 if ENV_TYPE == 'local':
     host = 'localhost'
     redis_host = '127.0.0.1:6379'
-else:
+elif ENV_TYPE == 'docker':
     host = os.getenv('POSTGRES_HOST')
     redis_host = 'redis:6379/0'
-
+else:
+    redis_host = 'redis:6379/0'
+    host = ''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
