@@ -73,9 +73,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 if ENV_TYPE == 'local':
-    host = '127.0.0.1'
+    host = 'localhost'
+    redis_host = '127.0.0.1:6379'
 else:
     host = os.getenv('POSTGRES_HOST')
+    redis_host = 'redis:6379/0'
 
 DATABASES = {
     'default': {
@@ -178,9 +180,9 @@ CORS_ALLOW_ALL_ORIGINS = False
 
 # Настройки для Celery
 
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_BROKER_URL = f'redis://{redis_host}'
 
-CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
+CELERY_RESULT_BACKEND = f'redis://{redis_host}'
 
 CELERY_TIMEZONE = "Europe/Moscow"
 
