@@ -69,8 +69,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# host и redis зависят от того где и как запускается проект смотри .env.sample
 
 if ENV_TYPE == 'local':
     host = 'localhost'
@@ -81,6 +80,10 @@ elif ENV_TYPE == 'docker':
 else:
     redis_host = 'redis:6379/0'
     host = ''
+
+# Database
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
