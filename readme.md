@@ -65,6 +65,7 @@ DEPLOY (DOCKER).
 
 Выполните команды: 
 sudo cp -f pg_hba.conf /etc/postgresql/14/main/pg_hba.conf
+sudo systemctl restart postgresql
 sudo psql -U <имя пользователя>
 CREATE DATABASE <имя базы данных>;
 \q

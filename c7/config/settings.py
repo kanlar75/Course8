@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 if ENV_TYPE == 'local':
     host = 'localhost'
     redis_host = '127.0.0.1:6379'
-elif ENV_TYPE == 'docker':
+elif ENV_TYPE == 'docker' or ENV_TYPE == 'docker_deploy':
     host = os.getenv('POSTGRES_HOST')
     redis_host = 'redis:6379/0'
 else:

@@ -1,6 +1,7 @@
-/etc/nginx/sites-available/habits
+#  /etc/nginx/sites-available/habits/
+
     listen 80;
-    server_name 158.160.3.35;
+    server_name $ALLOWED_HOSTS;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
