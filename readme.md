@@ -122,6 +122,12 @@ sudo cp nginx_gunicorn /etc/nginx/sites-available/habits
 Выполните команду: sudo ln -s /etc/nginx/sites-available/habits /etc/nginx/sites-enabled
 systemctl restart habits
 systemctl restart nginx
+poetry config virtualenvs.in-project true
+poetry shell
+poetry install
+python3 manage.py migrate
+python3 manage.py create_users
+systemctl start habits
 
 В адресной стоке браузера введите адрес http://xxx.xxx.xxx.xxx/admin
 где xxx.xxx.xxx.xxx ip ВМ
