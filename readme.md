@@ -59,7 +59,7 @@ DEPLOY (DOCKER).
 Подключитесь к удаленному серверу.
 Обновите пакеты командой: sudo apt update
 Установите пакеты: sudo apt install python3-poetry postgresql postgresql-contrib nginx docker docker-compose
-Перейдите в директорию nginx: sudo cd /var/www/html/. 
+Перейдите в директорию nginx: cd /var/www/html/. 
 Вы можете использовать другой путь, но тогда необходимо отредактировать файл nginx (замените /var/www/html/ на свой путь)
 Скопируйте Django-проект на сервер (например, через git clone)
 
@@ -75,7 +75,7 @@ CREATE DATABASE <имя базы данных>;
 Для запуска в docker на удаленном сервере установите ENV_TYPE='docker_deploy'.
 
 Скопируйте файл с настройками nginx командой:
-sudo cp -f nginx /etc/nginx/sites-available/habits/habits
+sudo cp -f nginx /etc/nginx/sites-available/Course8/habits
 Выполните команду: sudo ln -s /etc/nginx/sites-available/habits/c7 /etc/nginx/sites-enabled
 Запустите проект командой docker-compose up --build
 

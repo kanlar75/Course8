@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=root
 Group=www-data
-WorkingDirectory=/var/www/html/habits/c7/
-ExecStart=/var/www/html/habits/c7/.venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/var/www/html/habits/c7/habits.soc>
+WorkingDirectory=/var/www/html/Course8/c7/
+ExecStart=/var/www/html/Course8/c7/.venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/var/www/html/Course8/c7/habits.soc>
 [Install]
 WantedBy=multi-user.target
