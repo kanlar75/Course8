@@ -16,9 +16,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ENV_TYPE = os.getenv('ENV_TYPE')
-if ENV_TYPE == 'local':
+if ENV_TYPE == 'local' or ENV_TYPE == 'docker':
     ALLOWED_host = ['localhost']
-else:
+elif ENV_TYPE == 'no_lockal' or ENV_TYPE == 'docker_deploy':
     ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
 
 # Application definition

@@ -49,26 +49,30 @@ login: admin@test.com password: 12345
 
 Запустите контейнеры командой docker-compose up
 
-В адресной стоке браузера введите адрес http://127.0.0.1:8000/admin
+В адресной стоке браузера введите адрес http://127.0.0.1:8001/admin
 Пароль и логин для суперпользователя:
 login: admin@test.com password: 12345
 
 Для всех пользователей (user1@test.com, user2@test.com, staff@test.com) password: 12345.
 
-DEPLOY.
+DEPLOY (DOCKER).
 Подключитесь к удаленному серверу.
 Обновите пакеты командой: sudo apt update
 Установите пакеты: sudo apt install python3-poetry postgresql podtgresql-compose nginx docker docker-compose
-Перейдите в директорию nginx: cd /var/www/html/
-Клонируйте проект
+Перейдите в директорию nginx: sudo cd /var/www/html/. 
+Вы можете использовать другой путь, но тогда необходимо отредактировать файл nginx (замените /var/www/html/ на свой путь)
+Скопируйте Django-проект на сервер (например, через git clone)
+
 Выполните команды: 
 sudo cp -f pg_hba.conf /etc/postgresql/14/main/pg_hba.conf
-sudo psql -U postgres
+sudo psql -U <имя пользователя>
 CREATE DATABASE <имя базы данных>;
 \q
+
 Пропишите переменные окружения в файл .env. 
 Используемые в проекте переменные окружения записаны в файле .env.sample.
-Для запуска в docker установите ENV_TYPE='docker'.
+Для запуска в docker на удаленном сервере установите ENV_TYPE='docker_deploy'.
+
 Скопируйте файл с настройками nginx командой:
 sudo cp -f nginx /etc/nginx/sites-available/habits/nginx
 Выполните команду: sudo ln -s /etc/nginx/sites-available/habits/c7 /etc/nginx/sites-enabled
