@@ -1,0 +1,23 @@
+#  /etc/nginx/sites-available/Course8/
+
+server {
+    listen 80;
+    server_name $ALLOWED_HOSTS;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /var/www/html/Course8/c7;
+    }
+
+    location /media/ {
+        root /var/www/html/Course8/c7;
+    }
+
+
+    location / {
+        include proxy_params;
+# for daemon gunicorn
+        #proxy_pass http://unix:/var/www/html/Course8/c7/habits.sock;
+
+    }
+}
