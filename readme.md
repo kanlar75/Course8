@@ -58,7 +58,7 @@ login: admin@test.com password: 12345
 DEPLOY (DOCKER).
 Подключитесь к удаленному серверу.
 Обновите пакеты командой: sudo apt update
-Установите пакеты: sudo apt install python3-poetry postgresql podtgresql-compose nginx docker docker-compose
+Установите пакеты: sudo apt install python3-poetry postgresql postgresql-contrib nginx docker docker-compose
 Перейдите в директорию nginx: sudo cd /var/www/html/. 
 Вы можете использовать другой путь, но тогда необходимо отредактировать файл nginx (замените /var/www/html/ на свой путь)
 Скопируйте Django-проект на сервер (например, через git clone)
