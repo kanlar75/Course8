@@ -1,5 +1,6 @@
-#  /etc/nginx/sites-available/Course8/
+#  /etc/nginx/sites-available/
 
+server {
     listen 80;
     server_name $ALLOWED_HOSTS;
 
@@ -15,8 +16,6 @@
 
     location / {
         include proxy_params;
-# for daemon gunicorn
-        #proxy_pass http://unix:/var/www/html/Course8/c7/habits.sock;
 # for docker
         proxy_pass http://127.0.0.1:8001;
     }

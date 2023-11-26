@@ -66,18 +66,19 @@ DEPLOY (DOCKER).
 Выполните команды: 
 sudo cp -f pg_hba.conf /etc/postgresql/14/main/pg_hba.conf
 sudo systemctl restart postgresql
-sudo psql -U <имя пользователя>
-CREATE DATABASE <имя базы данных>;
-\q
+Создайте БД командами:
+1. docker-compose exec db psql -U <имя пользователя>
+2. CREATE DATABASE <имя базы данных>;
+3. \q 
 
 Пропишите переменные окружения в файл .env. 
 Используемые в проекте переменные окружения записаны в файле .env.sample.
 Для запуска в docker на удаленном сервере установите ENV_TYPE='docker_deploy'.
 
 Скопируйте файл с настройками nginx командой:
-sudo cp -f nginx /etc/nginx/sites-available/Course8/habits
-Выполните команду: sudo ln -s /etc/nginx/sites-available/habits/c7 /etc/nginx/sites-enabled
-Запустите проект командой docker-compose up --build
+sudo cp nginx_docker /etc/nginx/sites-available/habits
+Выполните команду: sudo ln -s /etc/nginx/sites-available/habits /etc/nginx/sites-enabled
+Запустите проект командой: sudo docker-compose up --build
 
 В адресной стоке браузера введите адрес http://xxx.xxx.xxx.xx/admin
 где xxx.xxx.xxx.xx ip ВМ
@@ -85,7 +86,11 @@ sudo cp -f nginx /etc/nginx/sites-available/Course8/habits
 login: admin@test.com password: 12345
 Для всех пользователей (user1@test.com, user2@test.com, staff@test.com) password: 12345.
 
-
+Если сайт отображается не корректно, выполните команды:
+poetry shell
+python3 manage.py collectstatic
+exit
+sudo systemctl restart nginx
 
 
 Если у вас возникли вопросы или проблемы при использовании проекта, свяжитесь со мной по электронной почте kls75@yandex.ru или оставьте комментарий в Issues проекта на GitHub https://github.com/kanlar75/course7/issues.
