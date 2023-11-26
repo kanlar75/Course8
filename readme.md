@@ -75,7 +75,7 @@ CREATE DATABASE <имя базы данных>;
 Для запуска в docker на удаленном сервере установите ENV_TYPE='docker_deploy'.
 
 Скопируйте файл с настройками nginx командой:
-sudo cp -f nginx /etc/nginx/sites-available/habits/nginx
+sudo cp -f nginx /etc/nginx/sites-available/habits/habits
 Выполните команду: sudo ln -s /etc/nginx/sites-available/habits/c7 /etc/nginx/sites-enabled
 Запустите проект командой docker-compose up --build
 
