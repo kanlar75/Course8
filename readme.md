@@ -6,20 +6,29 @@
 
 Важно указывать актуальный и правильный chat id при регистрации пользователя. Узнать его можно у бота https://t.me/getmyid_bot. Если не указать chat_id, то напомнания не будут отправляться.
 
-Установка Клонируйте проект. Активируйте виртуальное окружение командой: poetry shell. Установите зависимости командой: poetry install.
+ЗАПУСК ПРОЕКТА ЛОКАЛЬНО.
 
-Создайте Базу данных PostgreSQL, пропишите переменные окружения в файл .env. Используемые в проекте переменные окружения записаны в файле .env.sample.
+Клонируйте проект. Активируйте виртуальное окружение командой: poetry shell. 
+Установите зависимости командой: poetry install.
+Установите Redis (используется для периодических задач celer).
+
+Создайте Базу данных PostgreSQL командами:
+1. psql -U <имя пользователя>
+2. CREATE DATABASE <имя базы данных>;
+3. \q 
+
+Пропишите переменные окружения в файл .env. 
+Используемые в проекте переменные окружения записаны в файле .env.sample.
+Для локального запуска установите ENV_TYPE='local'
 
 Для миграции в базу данных используйте команду: python manage.py migrate
 
-Установите Redis (используется для периодических задач celer).
-
-Команды:
-
 Для создания суперпользователя и пользователей используйте команду: python manage.py create_users
 
-Пароль и логин для суперпользователя:
+Выполните команду: python manage.py runserver
 
+В адресной стоке браузера введите адрес http://127.0.0.1:8000/admin
+Пароль и логин для суперпользователя:
 login: admin@test.com password: 12345
 
 Для всех пользователей (user1@test.com, user2@test.com, staff@test.com) password: 12345.
@@ -27,15 +36,51 @@ login: admin@test.com password: 12345
 Для запуска планировщика celery используйте команду: python.exe -m celery -A config beat --loglevel=info. Остановка планировщика: ctrl + break.
 Для запуска worker используйте команду: python.exe -m celery -A config worker -l INFO -P eventlet. Остановка worker: ctrl + break.
 
-Работа с DOCKER:
-Установите DOCKER и при необходимости плагин Docker Compose
+ЗАПУСК ПРОЕКТА В DOCKER.
+
+Клонируйте проект.
+Установите DOCKER и при необходимости docker-compose.
+Пропишите переменные окружения в файл .env. 
+
 Создайте образ командой docker-compose build
-Создайте БД командами:
-1. docker-compose exec db psql -U <имя пользователя>
-2. CREATE DATABASE <имя базы данных>;
-3. \q 
+
+Используемые в проекте переменные окружения записаны в файле .env.sample.
+Для запуска в docker установите ENV_TYPE='docker'
+
 Запустите контейнеры командой docker-compose up
-Наличие файла .env с переменными окружения обязательно.
+
+В адресной стоке браузера введите адрес http://127.0.0.1:8000/admin
+Пароль и логин для суперпользователя:
+login: admin@test.com password: 12345
+
+Для всех пользователей (user1@test.com, user2@test.com, staff@test.com) password: 12345.
+
+DEPLOY.
+Подключитесь к удаленному серверу.
+Обновите пакеты командой: sudo apt update
+Установите пакеты: sudo apt install python3-poetry postgresql podtgresql-compose nginx docker docker-compose
+Перейдите в директорию nginx: cd /var/www/html/
+Клонируйте проект
+Выполните команды: 
+sudo cp -f pg_hba.conf /etc/postgresql/14/main/pg_hba.conf
+sudo psql -U postgres
+CREATE DATABASE <имя базы данных>;
+\q
+Пропишите переменные окружения в файл .env. 
+Используемые в проекте переменные окружения записаны в файле .env.sample.
+Для запуска в docker установите ENV_TYPE='docker'.
+Скопируйте файл с настройками nginx командой:
+sudo cp -f nginx /etc/nginx/sites-available/habits/nginx
+Выполните команду: sudo ln -s /etc/nginx/sites-available/habits/c7 /etc/nginx/sites-enabled
+Запустите проект командой docker-compose up --build
+
+В адресной стоке браузера введите адрес http://xxx.xxx.xxx.xx/admin
+где xxx.xxx.xxx.xx ip ВМ
+Пароль и логин для суперпользователя:
+login: admin@test.com password: 12345
+Для всех пользователей (user1@test.com, user2@test.com, staff@test.com) password: 12345.
+
+
 
 
 Если у вас возникли вопросы или проблемы при использовании проекта, свяжитесь со мной по электронной почте kls75@yandex.ru или оставьте комментарий в Issues проекта на GitHub https://github.com/kanlar75/course7/issues.
