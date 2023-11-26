@@ -1,4 +1,4 @@
-#  /etc/nginx/sites-available/Course8/
+#  /etc/nginx/sites-available/habits
 
 server {
     listen 80;
@@ -17,7 +17,7 @@ server {
     location / {
         include proxy_params;
 # for daemon gunicorn
-        #proxy_pass http://unix:/var/www/html/Course8/c7/habits.sock;
+        proxy_pass http://unix:/var/www/html/Course8/c7/habits.sock;
 
     }
 }
