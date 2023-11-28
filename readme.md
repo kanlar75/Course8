@@ -79,7 +79,7 @@ cd /var/www/html/
 Выполните команды: 
 sudo cp -f pg_hba.conf /etc/postgresql/14/main/pg_hba.conf
 sudo systemctl restart postgresql
-Создайте БД командами:
+Если бфзф данных не существует, создайте БД командами:
 docker-compose exec db psql -U <имя пользователя>
 CREATE DATABASE <имя базы данных>;
 \q 
@@ -92,6 +92,8 @@ CREATE DATABASE <имя базы данных>;
 sudo cp nginx_docker /etc/nginx/sites-available/habits
 Выполните команду: 
 sudo ln -s /etc/nginx/sites-available/habits /etc/nginx/sites-enabled
+sudo systemctl restart nginx
+
 Запустите проект командой: 
 sudo docker-compose up --build
 
