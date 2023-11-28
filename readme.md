@@ -79,11 +79,8 @@ cd /var/www/html/
 Выполните команды: 
 sudo cp -f pg_hba.conf /etc/postgresql/14/main/pg_hba.conf
 sudo systemctl restart postgresql
-Если бфзф данных не существует, создайте БД командами:
-docker-compose exec db psql -U <имя пользователя>
-CREATE DATABASE <имя базы данных>;
-\q 
-
+Перейдите в папку проекта:
+sudo cd Course8/c7/
 Пропишите переменные окружения в файл .env. 
 Используемые в проекте переменные окружения записаны в файле .env.sample.
 Для запуска в docker на удаленном сервере установите ENV_TYPE='docker_deploy'.
