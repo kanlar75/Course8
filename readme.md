@@ -67,7 +67,8 @@ login: admin@test.com password: 12345
 DEPLOY (DOCKER).
 
 Подключитесь к удаленному серверу.
-Обновите пакеты командой: sudo apt update
+Обновите пакеты командой: 
+sudo apt update
 Установите пакеты: 
 sudo apt install python3-poetry postgresql postgresql-contrib nginx docker docker-compose
 Перейдите в директорию nginx: 
@@ -76,11 +77,13 @@ cd /var/www/html/
 (замените /var/www/html/ на свой путь к проекту)
 Скопируйте Django-проект на сервер (например, через git clone)
 
+
+Перейдите в папку проекта:
+cd Course8/c7/
 Выполните команды: 
 sudo cp -f pg_hba.conf /etc/postgresql/14/main/pg_hba.conf
 sudo systemctl restart postgresql
-Перейдите в папку проекта:
-sudo cd Course8/c7/
+
 Пропишите переменные окружения в файл .env. 
 Используемые в проекте переменные окружения записаны в файле .env.sample.
 Для запуска в docker на удаленном сервере установите ENV_TYPE='docker_deploy'.
